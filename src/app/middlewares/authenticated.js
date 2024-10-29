@@ -21,5 +21,3 @@ const authenticated = (req, res, next) => {
 
 export default authenticated;
 
-// authorization => định danh người dùng
-// Authorization => dùng để check xem người dùng có quyền access hay k

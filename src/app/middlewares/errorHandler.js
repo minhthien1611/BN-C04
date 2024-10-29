@@ -9,7 +9,6 @@ const errorHandler = (err, req, res, next) => {
     for (const field in err.errors) {
       errors[field] = err.errors[field].message;
     }
-    // Đây chính là error của ông mongoose ném ra cho mình
   } else {
     errors[err.name] = err.message;
     statusCode = HttpStatusCode.InternalServer;

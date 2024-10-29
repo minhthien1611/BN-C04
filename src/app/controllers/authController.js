@@ -11,14 +11,12 @@ import {
 
 class AuthController {
   signUp(req, res, next) {
-    // Get data from model
     res.render('signup');
   }
 
   async login(req, res, next) {
     const { email, password } = req.body;
 
-    // 1. Find User by email has existed in database or not
     const getUser = await UserSchema.login(email, password);
 
     if (!getUser) {
@@ -55,7 +53,7 @@ class AuthController {
       });
     }
 
-    const users = await query; // at this time it will call to db and get data to client
+    const users = await query; 
     const total = await UserSchema.countDocuments();
 
     const convertData = users.map((user) => ({
@@ -106,14 +104,14 @@ class AuthController {
   async createUser(req, res, next) {
     try {
       const { email, password } = req.body;
-      // 1. Validate email
+      
       if (!validator.isEmail(email)) {
         return res
           .status(HttpStatusCode.BadRequest)
           .send(new BadRequest('Email format is invalid!'));
       }
 
-      // 2. Find User by email has existed in database or not
+      
       const getUser = await UserSchema.findOne({
         email,
       });
@@ -124,13 +122,12 @@ class AuthController {
           .send(new BadRequest('Email is existing, please try again!'));
       }
 
-      // 3. Create model to insert database
+      
       const user = new UserSchema({
         email,
         password,
       });
 
-      // 4. Save to database and return result
       await user.save();
       return res.status(HttpStatusCode.Ok).send(new SuccessResponse(user));
     } catch (error) {

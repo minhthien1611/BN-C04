@@ -13,4 +13,3 @@ const authorization = (role) => {
 
 export default authorization;
 
-// Solid => keep mind set của solid

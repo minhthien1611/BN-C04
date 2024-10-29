@@ -7,7 +7,7 @@ function routes(app) {
 
   app.get('/', (req, res) => {
     req.header;
-    res.cookie('userName', 'chinh', {
+    res.cookie('userName', 'admin', {
       maxAge: 60000,
       httpOnly: true,
     });
